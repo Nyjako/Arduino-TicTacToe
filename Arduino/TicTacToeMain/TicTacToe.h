@@ -86,6 +86,19 @@ protected:
     return false;
   }
 
+  bool isEmpty(int x, int y)
+  {
+    if (x < getSize() && y < getSize())
+    {
+      boardFill b = get(x, y);
+      if (b == boardFill::Empty)
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+
   bool playerWin(boardFill player)
   {
     unsigned short counter = 0;

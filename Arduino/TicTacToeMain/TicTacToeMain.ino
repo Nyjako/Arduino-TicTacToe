@@ -19,7 +19,6 @@ TicTacToeGame *tttg;
 
 void setup()
 {
-  Serial.begin(9600);
   om = new OponentMenu();
 
   pinMode(player1_led, OUTPUT);
@@ -34,21 +33,14 @@ void loop()
 {
   if(frame == 0)
   {
-    if(!buttonClicked)
+    short o = om->loop(left,right,select);
+    if(o != 0) 
     {
-      short o = om->loop(left,right,select);
-      if(o != 0) 
-      {
-        Serial.write("Next Frame");
-        frame++;
-        delete om;
-        tttg = new TicTacToeGame(o == 1, player1_led, player2_led);
-        
-      }
+      frame++;
+      delete om;
+      tttg = new TicTacToeGame(o == 1, player1_led, player2_led);
+      
     }
-
-    if(digitalRead(left) == LOW || digitalRead(right) == LOW || digitalRead(select) == LOW) buttonClicked = true;
-    else buttonClicked = false;
   }
   else if(frame == 1)
   {

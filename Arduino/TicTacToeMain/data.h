@@ -13,3 +13,23 @@ struct LED_cell
   LED_Board_Fill bf = LED_Board_Fill::Empty;
   uint8_t stat = LOW;
 };
+
+static void buttonWait(int buttonPin){
+  int buttonState = 0;
+  while(1){
+    buttonState = digitalRead(buttonPin);
+    if (buttonState == HIGH) {
+      return;
+    }
+  }
+}
+
+static void buttonWaitForPress(int buttonPin){
+  int buttonState = 0;
+  while(1){
+    buttonState = digitalRead(buttonPin);
+    if (buttonState == LOW) {
+      return;
+    }
+  }
+}

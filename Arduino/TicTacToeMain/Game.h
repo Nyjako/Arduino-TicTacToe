@@ -59,7 +59,7 @@ class TicTacToeGame : TicTacToe, AI
 
           boardFill player = (player1Move) ? boardFill::Player1 : boardFill::Player2;
 
-          if(digitalRead(select) != LOW && !move(x, y, player))
+          if(digitalRead(select) != LOW || !isEmpty(x, y))
           {
             if(digitalRead(left) == LOW) x--;
             else if(digitalRead(right) == LOW) x++;
@@ -74,6 +74,8 @@ class TicTacToeGame : TicTacToe, AI
           }
           else
           {
+            buttonWait(select);
+            move(x, y, player);
             if (playerWin(player))
               gameDone = player;
 

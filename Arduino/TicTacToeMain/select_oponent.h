@@ -33,8 +33,17 @@ class OponentMenu
         }
       }
 
-      if (digitalRead(left) == LOW || digitalRead(right) == LOW) playWithAI = !playWithAI;
-      else if (digitalRead(select) == LOW) return (playWithAI) ? 1 : 2;
+      if (digitalRead(left) == LOW || digitalRead(right) == LOW) 
+      {
+        buttonWait(left);
+        buttonWait(right);
+        playWithAI = !playWithAI;
+      }
+      else if (digitalRead(select) == LOW) 
+      {
+        buttonWait(select);
+        return (playWithAI) ? 1 : 2;
+      }
 
       return 0;
     }
